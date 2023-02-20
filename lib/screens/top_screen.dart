@@ -21,14 +21,6 @@ class _TopScreenState extends State<TopScreen> {
   TextEditingController teamANameController = TextEditingController();
   TextEditingController teamBNameController = TextEditingController();
 
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

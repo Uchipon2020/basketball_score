@@ -9,12 +9,13 @@ class MemberChangeScreen extends StatefulWidget {
   @override
   MemberChangeScreenState createState() => MemberChangeScreenState();
 }
+
 class MemberChangeScreenState extends State<MemberChangeScreen> {
 
   TextEditingController numberController = TextEditingController();
   TextEditingController nameController = TextEditingController();
-  late String changedName;
-  late String changedNumber;
+  //String changedName = '';
+  //String changedNumber = '';
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +46,6 @@ class MemberChangeScreenState extends State<MemberChangeScreen> {
                           child: TextFormField(
                             textAlign: TextAlign.center,
                             controller: numberController,
-                            onChanged: (value) {
-                             changedNumber  = numberController.text;
-                            },
                           ),
                         ),
                       ),
@@ -56,9 +54,6 @@ class MemberChangeScreenState extends State<MemberChangeScreen> {
                           child: TextFormField(
                             textAlign: TextAlign.center,
                             controller: nameController,
-                            onChanged: (value) {
-                              changedName = nameController.text;
-                            },
                           ),
                         ),
                       ),
@@ -69,10 +64,8 @@ class MemberChangeScreenState extends State<MemberChangeScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        membersB[widget.counter]['name'] = 'takeshi';
-                        membersB[widget.counter]['背番号'] = 3;
-                      });
+                        membersB[widget.counter]['name'] = nameController.text;
+                        membersB[widget.counter]['背番号'] = int.parse(na);
                       Navigator.pop(context);
                     },
                     child: const Text('変更終了'),

@@ -44,16 +44,6 @@ class _TeamSetState extends State<TeamSet> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 60.0,
-                  child: Card(
-                    child: ListTile(
-                      title: Text('${membersA[index]['背番号']}',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
               ],
             );
           },

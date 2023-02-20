@@ -1,5 +1,5 @@
 class Member{
-  Map<String,dynamic> teamA = {'No':0, 'number':4, 'foul':0 ,'name':''};
+  /*Map<String,dynamic> teamA = {'No':0, 'number':4, 'foul':0 ,'name':''};
   Map<String,dynamic> teamA2 = {'No':0,'number':5, 'foul':0 ,'name':''};
   Map<String,dynamic> teamA3 = {'No':0,'number':6, 'foul':0 ,'name':''};
   Map<String,dynamic> teamA4 = {'No':0,'number':7, 'foul':0 ,'name':''};
@@ -35,43 +35,42 @@ class Member{
   Map<String,dynamic> teamB15 = {'No':0,'number':18, 'foul':0 ,'name':''};
   Map<String,dynamic> teamB16 = {'No':0,'number':19, 'foul':0 ,'name':''};
   Map<String,dynamic> teamB17 = {'No':0,'number':20, 'foul':0 ,'name':''};
-  Map<String,dynamic> teamB18 = {'No':0,'number':21, 'foul':0 ,'name':''};
+  Map<String,dynamic> teamB18 = {'No':0,'number':21, 'foul':0 ,'name':''};*/
 }
 
 class Teams{
-
   List<Map<String,dynamic>> teamA = [
-    {"チーム" : 1, "name": "内山 ","背番号" : 4, "foul" : 0 ,"goal" : 0 },//0
-    {"チーム" : 1, "name": "山田 ","背番号" : 5, "foul" : 0 ,"goal" : 0 },
-    {"チーム" : 1, "name": "田中 ","背番号" : 6, "foul" : 0 ,"goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 7, "foul" : 0 ,"goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 8, "foul" : 0 ,"goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 9, "foul" : 0 ,"goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 10, "foul" : 0, "goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 11, "foul" : 0, "goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 12, "foul" : 0, "goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 13, "foul" : 0, "goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 14, "foul" : 0, "goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 15, "foul" : 0, "goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 16, "foul" : 0, "goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 17, "foul" : 0, "goal" : 0 },
-    {"チーム" : 1, "name": " ","背番号" : 18, "foul" : 0, "goal" : 0 },
+    {"name": "内山 ","背番号" : 4, "foul" : 0 ,"goal" : 0 },//0
+    {"name": "山田 ","背番号" : 5, "foul" : 0 ,"goal" : 0 },
+    {"name": "田中 ","背番号" : 6, "foul" : 0 ,"goal" : 0 },
+    {"name": " ","背番号" : 7, "foul" : 0 ,"goal" : 0 },
+    {"name": " ","背番号" : 8, "foul" : 0 ,"goal" : 0 },
+    {"name": " ","背番号" : 9, "foul" : 0 ,"goal" : 0 },
+    {"name": " ","背番号" : 10, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 11, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 12, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 13, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 14, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 15, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 16, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 17, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 18, "foul" : 0, "goal" : 0 },
     ];
   List<Map<String,dynamic>> teamB = [
-    {"チーム" : 2, "name": "田中弘明 ","背番号" : 44, "foul" : 0 ,"goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 5, "foul" : 0 ,"goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 6, "foul" : 0 ,"goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 7, "foul" : 0 ,"goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 8, "foul" : 0 ,"goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 9, "foul" : 0 ,"goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 10, "foul" : 0, "goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 11, "foul" : 0, "goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 12, "foul" : 0, "goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 13, "foul" : 0, "goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 14, "foul" : 0, "goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 15, "foul" : 0, "goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 16, "foul" : 0, "goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 17, "foul" : 0, "goal" : 0 },
-    {"チーム" : 2, "name": " ","背番号" : 18, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 44, "foul" : 0 ,"goal" : 0 },
+    {"name": " ","背番号" : 5, "foul" : 0 ,"goal" : 0 },
+    {"name": " ","背番号" : 6, "foul" : 0 ,"goal" : 0 },
+    {"name": " ","背番号" : 7, "foul" : 0 ,"goal" : 0 },
+    {"name": " ","背番号" : 8, "foul" : 0 ,"goal" : 0 },
+    {"name": " ","背番号" : 9, "foul" : 0 ,"goal" : 0 },
+    {"name": " ","背番号" : 10, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 11, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 12, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 13, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 14, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 15, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 16, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 17, "foul" : 0, "goal" : 0 },
+    {"name": " ","背番号" : 18, "foul" : 0, "goal" : 0 },
 ];
 }
