@@ -22,6 +22,8 @@ class MemberChangeScreenState extends State<MemberChangeScreen> {
     var membersB = Teams().teamB;
     numberController.text = membersB[widget.counter]['背番号'].toString();
     nameController.text = membersB[widget.counter]['name'];
+    int? number;
+    String? name;
 
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
@@ -46,6 +48,9 @@ class MemberChangeScreenState extends State<MemberChangeScreen> {
                           child: TextFormField(
                             textAlign: TextAlign.center,
                             controller: numberController,
+                            onChanged: (vale){
+                              number = int.parse(numberController.text);
+                            },
                           ),
                         ),
                       ),
@@ -54,6 +59,9 @@ class MemberChangeScreenState extends State<MemberChangeScreen> {
                           child: TextFormField(
                             textAlign: TextAlign.center,
                             controller: nameController,
+                            onChanged: (vale){
+                              name = nameController.text;
+                            },
                           ),
                         ),
                       ),
@@ -64,9 +72,8 @@ class MemberChangeScreenState extends State<MemberChangeScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                        membersB[widget.counter]['name'] = nameController.text;
-                        membersB[widget.counter]['背番号'] = int.parse(na);
-                      Navigator.pop(context);
+                      Navigator.pop(context,[number,name]);
+                      debugPrint('$number : $name');
                     },
                     child: const Text('変更終了'),
                   ),
@@ -77,4 +84,7 @@ class MemberChangeScreenState extends State<MemberChangeScreen> {
         ),
     );
   }
+}
+
+class $number {
 }

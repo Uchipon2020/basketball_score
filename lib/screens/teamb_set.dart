@@ -44,41 +44,60 @@ class _TeamBSetState extends State<TeamBSet> {
         child: ListView.builder(
           itemCount: membersB.length,
           itemBuilder: (BuildContext context, int index) {
-            return Row(
-              children: [
-                SizedBox(
-                  width: 60.0,
-                  child: Card(
-                    child: ListTile(
-                        title: Text(
-                      '${membersB[index]['背番号']}',
-                      textAlign: TextAlign.center,
-                    )),
-                  ),
-                ),
-                Expanded(
-                  child: Card(
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context)
-                              => MemberChangeScreen(counter:index)),
-                        );
-                        setState(() {
-
-                        });
-                      },
-                      title: Text('${membersB[index]['name']}'),
+            return  Container(
+              alignment: Alignment.center,
+              color: Colors.white38,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 60.0,
+                    child: Card(
+                      child: ListTile(
+                          onTap: () async {
+                            var result = await Navigator.push<List<dynamic>?>(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      MemberChangeScreen(counter: index)),
+                            );
+                            reloaded(index, result!);
+                          },
+                          title: Text(
+                        '${membersB[index]['背番号']}',
+                        textAlign: TextAlign.center,
+                      )),
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Card(
+                      child: ListTile(
+                        onTap: () async {
+                          var result = await Navigator.push<List<dynamic>?>(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    MemberChangeScreen(counter: index)),
+                          );
+                          reloaded(index, result!);
+                        },
+                        title: Text('${membersB[index]['name']}'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         ),
       ),
     );
+  }
+  void reloaded(int index , List<dynamic> result) {
+    setState(() {
+      membersB[index]['name'] = result[1];
+      membersB[index]['背番号'] = result[0];
+      debugPrint('popの戻り値+ ${result[1]}');
+      debugPrint('中のデータベース+ ${membersB[index]['name']}');
+    });
   }
 }
