@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FoulScreen extends StatefulWidget {
-  const FoulScreen({Key? key}) : super(key: key);
+  const FoulScreen({super.key});
 
   @override
   State<FoulScreen> createState() => _FoulScreenState();
@@ -12,14 +12,14 @@ class _FoulScreenState extends State<FoulScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TOP SCREEN'),
+        title: const Text('記録画面'),
       ),
-      body:  SizedBox(
-        width:double.infinity,
+      body: SizedBox(
+        width: double.infinity,
         height: 80,
-          child: Container(
-            color: Colors.amber,
-          ),
+        child: Container(
+          color: Colors.amber,
+        ),
       ),
     );
   }

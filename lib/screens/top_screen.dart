@@ -1,32 +1,84 @@
-import 'package:basketball_score/screens/foul_screen.dart';
-import 'package:basketball_score/screens/teama_set.dart';
-import 'package:basketball_score/screens/teamb_set.dart';
 import 'package:flutter/material.dart';
-
 import '../member/teams.dart';
+import '../models/player.dart';
+import 'foul_screen.dart';
+import 'teama_set.dart';
+import 'teamb_set.dart';
 
 class TopScreen extends StatefulWidget {
-  const TopScreen({Key? key}) : super(key: key);
+  const TopScreen({super.key});
 
   @override
   State<TopScreen> createState() => _TopScreenState();
 }
 
 class _TopScreenState extends State<TopScreen> {
-  String teamA = 'TeamA'; //チーム名の入力
-  String teamB = 'TeamB';//チームBをStringで入力・保存
-  List<Map> teamsAMain = Teams().teamA;//メインのリストマップを、モデルから初期化
-  List<Map> teamsBMain = Teams().teamB;
+  String teamAName = 'TeamA';
+  String teamBName = 'TeamB';
+  List<Player> teamsAMain = Teams.teamA;
+  List<Player> teamsBMain = Teams.teamB;
 
-  TextEditingController teamANameController = TextEditingController();
-  TextEditingController teamBNameController = TextEditingController();
+  final _teamAController = TextEditingController();
+  final _teamBController = TextEditingController();
+
+  @override
+  void dispose() {
+    _teamAController.dispose();
+    _teamBController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _navigateToTeamA() async {
+    final result = await Navigator.of(context).push<List<Player>?>(
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => TeamASet(teams: teamsAMain),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(-1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        ),
+      ),
+    );
+    if (result != null) setState(() => teamsAMain = result);
+  }
+
+  Future<void> _navigateToTeamB() async {
+    final result = await Navigator.of(context).push<List<Player>?>(
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => TeamBSet(teams: teamsBMain),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        ),
+      ),
+    );
+    if (result != null) setState(() => teamsBMain = result);
+  }
+
+  void _navigateToRecord() {
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => const FoulScreen(),
+        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0.0, 1.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('TOP SCREEN'),
-      ),
+      appBar: AppBar(title: const Text('TOP SCREEN')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -34,37 +86,32 @@ class _TopScreenState extends State<TopScreen> {
             SizedBox(
               width: double.infinity,
               height: 380,
-              child: Container(
-                color: Colors.amber,
-              ),
+              child: Container(color: Colors.amber),
             ),
             TextField(
-              controller: teamANameController,
+              controller: _teamAController,
               textAlign: TextAlign.center,
-              onChanged: (value) {
-                teamA = teamANameController.text;
-              },
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0))),
-            ),
-            const Text(
-              'VS',
-              style: TextStyle(
-                fontSize: 29,
-                color: Colors.blue,
-              ),
-            ),
-            TextField(
-              controller: teamBNameController,
-              textAlign: TextAlign.center,
-              onChanged: (value) {
-                teamB = teamBNameController.text;
-              },
+              onChanged: (value) => teamAName = value,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
                 ),
+                hintText: 'チームA名',
+              ),
+            ),
+            const Text(
+              'VS',
+              style: TextStyle(fontSize: 29, color: Colors.blue),
+            ),
+            TextField(
+              controller: _teamBController,
+              textAlign: TextAlign.center,
+              onChanged: (value) => teamBName = value,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                hintText: 'チームB名',
               ),
             ),
             const SizedBox(height: 50),
@@ -72,86 +119,15 @@ class _TopScreenState extends State<TopScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  //スライドのある画面遷移　左のボタンは左からスライドイン
-                  onPressed: () {
-                    var result = Navigator.of(context).push<List<Map>?>(
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          // 表示する画面のWidget
-                          return  TeamASet(teams:teamsAMain);//チームの名簿リスト（線番号・名前）が丸々帰ってくる
-                        },
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          // 遷移時のアニメーションを指定
-                          const Offset begin = Offset(-1.0, 0.0);
-                          const Offset end = Offset.zero;
-                          final Tween<Offset> tween =
-                              Tween(begin: begin, end: end);
-                          final Animation<Offset> offsetAnimation =
-                              animation.drive(tween);
-                          return SlideTransition(
-                            position: offsetAnimation,
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
-                    teamsAMain = result as List<Map>;
-                  },
+                  onPressed: _navigateToTeamA,
                   child: const Text('濃　チーム'),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          // 表示する画面のWidget
-                          return const FoulScreen();
-                        },
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          // 遷移時のアニメーションを指定
-                          const Offset begin = Offset(0.0, 1.0);
-                          const Offset end = Offset.zero;
-                          final Tween<Offset> tween =
-                              Tween(begin: begin, end: end);
-                          final Animation<Offset> offsetAnimation =
-                              animation.drive(tween);
-                          return SlideTransition(
-                            position: offsetAnimation,
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
-                  },
+                  onPressed: _navigateToRecord,
                   child: const Text('記録開始'),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          // 表示する画面のWidget
-                          return const TeamBSet();
-                        },
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          // 遷移時のアニメーションを指定
-                          const Offset begin = Offset(1.0, 0.0);
-                          const Offset end = Offset.zero;
-                          final Tween<Offset> tween =
-                              Tween(begin: begin, end: end);
-                          final Animation<Offset> offsetAnimation =
-                              animation.drive(tween);
-                          return SlideTransition(
-                            position: offsetAnimation,
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
-                  },
+                  onPressed: _navigateToTeamB,
                   child: const Text('淡 チーム'),
                 ),
               ],

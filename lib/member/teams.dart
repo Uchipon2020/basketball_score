@@ -1,36 +1,13 @@
-class Teams{
-  List<Map<String,dynamic>> teamA = [
-    {"name": "濃・背番号4","背番号" : 4, "foul" : 0 ,"goal" : 0 },//0
-    {"name": "濃・背番号5","背番号" : 5, "foul" : 0 ,"goal" : 0 },
-    {"name": "濃・背番号6","背番号" : 6, "foul" : 0 ,"goal" : 0 },
-    {"name": "濃・背番号7","背番号" : 7, "foul" : 0 ,"goal" : 0 },
-    {"name": "濃・背番号8","背番号" : 8, "foul" : 0 ,"goal" : 0 },
-    {"name": "濃・背番号9","背番号" : 9, "foul" : 0 ,"goal" : 0 },
-    {"name": "濃・背番号10","背番号" : 10, "foul" : 0, "goal" : 0 },
-    {"name": "濃・背番号11","背番号" : 11, "foul" : 0, "goal" : 0 },
-    {"name": "濃・背番号12","背番号" : 12, "foul" : 0, "goal" : 0 },
-    {"name": "濃・背番号13","背番号" : 13, "foul" : 0, "goal" : 0 },
-    {"name": "濃・背番号14","背番号" : 14, "foul" : 0, "goal" : 0 },
-    {"name": "濃・背番号15","背番号" : 15, "foul" : 0, "goal" : 0 },
-    {"name": "濃・背番号16","背番号" : 16, "foul" : 0, "goal" : 0 },
-    {"name": "濃・背番号17","背番号" : 17, "foul" : 0, "goal" : 0 },
-    {"name": "濃・背番号18","背番号" : 18, "foul" : 0, "goal" : 0 },
-    ];
-  List<Map<String,dynamic>> teamB = [
-    {"name": "淡・背番号4","背番号" : 4, "foul" : 0 ,"goal" : 0 },
-    {"name": "淡・背番号5","背番号" : 5, "foul" : 0 ,"goal" : 0 },
-    {"name": "淡・背番号6","背番号" : 6, "foul" : 0 ,"goal" : 0 },
-    {"name": "淡・背番号7","背番号" : 7, "foul" : 0 ,"goal" : 0 },
-    {"name": "淡・背番号8","背番号" : 8, "foul" : 0 ,"goal" : 0 },
-    {"name": "淡・背番号9","背番号" : 9, "foul" : 0 ,"goal" : 0 },
-    {"name": "淡・背番号10","背番号" : 10, "foul" : 0, "goal" : 0 },
-    {"name": "淡・背番号11","背番号" : 11, "foul" : 0, "goal" : 0 },
-    {"name": "淡・背番号12","背番号" : 12, "foul" : 0, "goal" : 0 },
-    {"name": "淡・背番号13","背番号" : 13, "foul" : 0, "goal" : 0 },
-    {"name": "淡・背番号14","背番号" : 14, "foul" : 0, "goal" : 0 },
-    {"name": "淡・背番号15","背番号" : 15, "foul" : 0, "goal" : 0 },
-    {"name": "淡・背番号16","背番号" : 16, "foul" : 0, "goal" : 0 },
-    {"name": "淡・背番号17","背番号" : 17, "foul" : 0, "goal" : 0 },
-    {"name": "淡・背番号18","背番号" : 18, "foul" : 0, "goal" : 0 },
-];
+import '../models/player.dart';
+
+class Teams {
+  static List<Player> get teamA => List.generate(
+        15,
+        (i) => Player(number: i + 4, name: '濃・背番号${i + 4}'),
+      );
+
+  static List<Player> get teamB => List.generate(
+        15,
+        (i) => Player(number: i + 4, name: '淡・背番号${i + 4}'),
+      );
 }
